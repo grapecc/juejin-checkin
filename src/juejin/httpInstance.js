@@ -14,16 +14,19 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(
-  config => config,
+  config => {
+    // console.log("请求URL:", config)
+    return config
+  },
   error => Promise.reject(error)
 )
 
 http.interceptors.response.use(
   response => {
     if (response?.data?.err_no !== SUCCESS_CODE) {
-      return Promise.reject(response)
+      return Promise.reject(response?.data ?? "响应结果为空！")
     }
-
+    // console.log("响应结果：", response)
     return Promise.resolve(response?.data?.data ?? {})
   },
   error => {

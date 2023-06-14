@@ -23,15 +23,16 @@ const growth = {
 const message = () => {
   return `
 Hello ${growth.userName}
-${growth.checkedIn ? `签到 +${growth.incrPoint} 矿石` : '今日已签到'}
-当前矿石数 ${growth.sumPoint}
-连续签到天数 ${growth.contCount}
-累计签到天数 ${growth.sumCount}
+签到状态：${growth.checkedIn ? `签到 +${growth.incrPoint} 矿石` : '今日已签到'}
+当前矿石数：${growth.sumPoint}
+连续签到天数：${growth.contCount}
+累计签到天数：${growth.sumCount}
 ${growth.dippedLucky ? '今日已经沾过喜气' : `沾喜气 +${growth.dipValue} 幸运值`}
-当前幸运值 ${growth.luckyValue}
-免费抽奖次数 ${growth.freeCount}
+当前幸运值：${growth.luckyValue}
+免费抽奖次数：${growth.freeCount}
 ${growth.freeDrawed ? `恭喜抽中 ${growth.lotteryName}` : '今日已免费抽奖'}
-${growth.collectedBug ? `收集 Bug +${growth.collectBugCount}` : '暂无可收集 Bug'}
+Bug收集功能：${growth.collectedBug ? `收集 Bug +${growth.collectBugCount}` : '暂无可收集的Bug'}
+异常信息：${growth.catchException ? `${growth.error}` : '暂无'}
 `.trim()
 }
 
@@ -108,6 +109,7 @@ const main = async () => {
     }
 
     growth.collectedBug = true
+
   }
 
   pushMessage({
@@ -117,8 +119,10 @@ const main = async () => {
 }
 
 main().catch(error => {
+  growth.catchException = true
+  growth.error = error?.err_msg ?? '未知错误'
   pushMessage({
-    type: 'error',
-    message: error.stack,
+    type: 'info',
+    message: message(),
   })
 })
