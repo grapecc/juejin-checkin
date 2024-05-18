@@ -81,6 +81,15 @@ class Api {
   }
 
   /**
+   * @desc 幸运值查询
+   * @returns {Promise<*>}
+   * data.total_value 幸运值
+   */
+  getLucky() {
+    return this.http.post('/growth_api/v1/lottery_lucky/my_lucky')
+  }
+
+  /**
    * @desc 免费抽奖次数
    * @returns {Promise<*>}
    * {
@@ -133,6 +142,16 @@ class Api {
    */
   collectBug({ bug_time = '', bug_type = '' } = {}) {
     return this.http.post('/user_api/v1/bugfix/collect', { bug_time, bug_type })
+  }
+
+  /**
+   * @desc 收集 Bug
+   * @param bug_time
+   * @param bug_type
+   * @returns {Promise<*>}
+   */
+  getBenefitPage({ page_no = 1, page_size = 1000, type = 1, got_channel = 2 } = {}) {
+    return this.http.post('/growth_api/v1/get_benefit_page', { page_no, page_size, type, got_channel })
   }
 }
 

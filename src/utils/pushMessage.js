@@ -19,7 +19,7 @@ const pushMessage = ({ type, message }) => {
     pushplus(
       formatter(type, message, {
         style: 'markdown',
-        bold: true,
+        bold: false,
         wordWrap: true,
       })
     )
