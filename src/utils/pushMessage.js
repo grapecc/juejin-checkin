@@ -6,7 +6,6 @@ const { EMAIL, AUTHORIZATION_CODE, PUSHPLUS_TOKEN, DINGDING_WEBHOOK, FEISHU_WEBH
 
 const pushMessage = ({ type, message }) => {
   console.log(message)
-
   EMAIL &&
     AUTHORIZATION_CODE &&
     email(

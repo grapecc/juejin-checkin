@@ -22,7 +22,7 @@ class Api {
    * Boolean 是否签到
    */
   getTodayStatus() {
-    return this.http.get('/growth_api/v1/get_today_status')
+    return this.http.get('/growth_api/v2/get_today_status')
   }
 
   /**
@@ -33,7 +33,9 @@ class Api {
    * }
    */
   checkIn() {
-    return this.http.post('/growth_api/v1/check_in')
+    return this.http.post('/growth_api/v1/check_in', '', {
+      metadata: { addEncryptParams: true }
+    })
   }
 
   /**
@@ -97,7 +99,9 @@ class Api {
    * }
    */
   getLotteryConfig() {
-    return this.http.get('/growth_api/v1/lottery_config/get')
+    return this.http.get('/growth_api/v1/lottery_config/get', {
+      metadata: { addEncryptParams: true }
+    })
   }
 
   /**
@@ -108,7 +112,9 @@ class Api {
    * }
    */
   drawLottery() {
-    return this.http.post('/growth_api/v1/lottery/draw')
+    return this.http.post('/growth_api/v1/lottery/draw', '', {
+      metadata: { addEncryptParams: true }
+    })
   }
 
   /**
@@ -117,7 +123,9 @@ class Api {
    * Number 矿石数量
    */
   getCurrentPoint() {
-    return this.http.get('/growth_api/v1/get_cur_point')
+    return this.http.get('/growth_api/v1/get_cur_point', {
+      metadata: { addEncryptParams: true }
+    })
   }
 
   /**
@@ -150,8 +158,10 @@ class Api {
    * @param bug_type
    * @returns {Promise<*>}
    */
-  getBenefitPage({ page_no = 1, page_size = 1000, type = 1, got_channel = 2 } = {}) {
-    return this.http.post('/growth_api/v1/get_benefit_page', { page_no, page_size, type, got_channel })
+  getBenefitPage({ page_no = 1, page_size = 1000, type = 2, got_channel = 2 } = {}) {
+    return this.http.post('/growth_api/v1/get_benefit_page', '', {
+      metadata: { addEncryptParams: true }
+    })
   }
 }
 
