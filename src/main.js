@@ -1,6 +1,5 @@
 const Juejin = require('./juejin/index.js')
 const pushMessage = require('./utils/pushMessage.js')
-const { wait, getRandomArbitrary } = require('./utils/utils.js')
 const { COOKIE } = require('./ENV.js')
 
 const growth = {
@@ -51,7 +50,7 @@ const main = async () => {
   // 签到
   const checkIn = await juejin.getTodayStatus()
 
-  if (!checkIn?.check_in_done) { {
+  if (!checkIn?.check_in_done) {
     const checkInResult = await juejin.checkIn()
 
     growth.checkedIn = true
