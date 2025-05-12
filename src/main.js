@@ -51,7 +51,7 @@ const main = async () => {
   // 签到
   const checkIn = await juejin.getTodayStatus()
 
-  if (!checkIn) {
+  if (!checkIn?.check_in_done) { {
     const checkInResult = await juejin.checkIn()
 
     growth.checkedIn = true
