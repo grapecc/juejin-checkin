@@ -25,7 +25,7 @@ Hello ${growth.userName}
 连续签到天数：<b>${growth.contCount}</b>
 累计签到天数：<b>${growth.sumCount}</b>
 当前幸运值：<b>${growth.luckyValue}</b>
-免费抽奖次数：<b>${growth.freeCount}</b>次${growth.freeDrawed ? `恭喜抽中 ${growth.lotteryName}` : '今日已免费抽奖'}
+免费抽奖次数：<b>${growth.freeCount}</b>次 | ${growth.freeDrawed ? `恭喜抽中 ${growth.lotteryName}` : '今日已免费抽奖'}
 <details>\
 <summary>当前矿石可兑换物品</summary>\
 ${growth.benefitList.map((item) => {
