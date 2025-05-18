@@ -1,5 +1,6 @@
 const Juejin = require('./juejin/index.js')
 const pushMessage = require('./utils/pushMessage.js')
+const formatMessage = require('./utils/formatMessage.js');
 const { COOKIE } = require('./ENV.js')
 
 const growth = {
@@ -15,24 +16,6 @@ const growth = {
   freeDrawed: false, // 是否免费抽奖
   lotteryName: '', // 奖品名称
   benefitList: [], // 可兑换奖品数量
-}
-
-const message = () => {
-  return `
-Hello ${growth.userName}
-签到状态：${growth.checkedIn ? `签到 +${growth.incrPoint} 矿石` : '今日已签到'}
-当前矿石数：<b>${growth.sumPoint}</b>
-连续签到天数：<b>${growth.contCount}</b>
-累计签到天数：<b>${growth.sumCount}</b>
-当前幸运值：<b>${growth.luckyValue}</b>
-免费抽奖次数：<b>${growth.freeCount}</b>次 | ${growth.freeDrawed ? `恭喜抽中 ${growth.lotteryName}` : '今日已免费抽奖'}
-<details>\
-<summary>当前矿石可兑换物品</summary>\
-${growth.benefitList.map((item) => {
-    return `&nbsp&nbsp&nbsp&nbsp<b>${item.lottery_name}</b>：🧊${item.count}矿石 🫙${item.today_cap}<br>`;
-  }).join("")}</details>
-异常信息：${growth.catchException ? `${growth.error}` : '暂无'}
-`.trim()
 }
 
 const main = async () => {
@@ -96,7 +79,7 @@ const main = async () => {
 
   pushMessage({
     type: 'info',
-    message: message(),
+    message: formatMessage(growth),
   })
 
 }
@@ -106,6 +89,6 @@ main().catch(error => {
   growth.error = error
   pushMessage({
     type: 'info',
-    message: message(),
+    message: formatMessage(growth),
   })
 })
