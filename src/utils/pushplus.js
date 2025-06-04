@@ -7,10 +7,10 @@ const pushplus = async ({ title = '', content = '' } = {}) => {
 
   try {
     await axios
-      .post('https://www.pushplus.plus/api/send', {
+      .post('https://www.pushplus.plus/send', {
         token: PUSHPLUS_TOKEN,
         template: 'html',
-        title,
+        title: '签到推送',
         channel: "wechat",
         content,
       }, {
